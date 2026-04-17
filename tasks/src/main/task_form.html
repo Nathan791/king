@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${task.id == null} ? 'Créer une tâche' : 'Modifier la tâche'">Tâche</title>
+</head>
+<body>
+<h1 th:text="${task.id == null} ? 'Créer une tâche' : 'Modifier la tâche'"></h1>
+<form th:action="@{${task.id == null} ? '/tasks' : '/tasks/' + ${task.id}}" th:object="${task}"
+      method="post">
+    <div>
+        <label for="content">Contenu :</label>
+        <input type="text" id="content" th:field="*{content}" required>
+    </div>
+    <div>
+        <label for="category">Catégorie :</label>
+        <select id="category" th:field="*{category}" required>
+            <option th:each="cat : ${categories}" th:value="${cat}"
+                    th:text="${cat.name}"></option>
+        </select>
+    </div>
+    <div>
+    </div>
+    <label for="dueDate">Date d'échéance :</label>
+    <input type="date" id="dueDate" th:field="*{dueDate}" required>
+    <div>
+        <label for="status">Statut :</label>
+        <select id="status" th:field="*{status}" required>
+            <option value="À faire">À faire</option>
+            <option value="En cours">En cours</option>
+            <option value="Terminé">Terminé</option>
+            <button type="submit" th:text="${task.id == null} ? 'Créer' : 'Modifier'"></button>
+            <a href="/tasks">Annuler</a>
+        </select>
+    </div>
+    <div>
+    </div>
+</form>
+</body>
+</html>
+

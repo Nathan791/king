@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+</head>
+<body>
+<h1>Choses à faire</h1>
+
+<p th:if="${rows.isEmpty()}">Aucune tâche à afficher</p>
+
+<table th:unless="${rows.isEmpty()}">
+    <tr th:each="row: ${rows}">
+        <td th:text="${row.get('note_id')}"></td>
+        <td th:text="${row.get('content')}"></td>
+    </tr>
+</table>
+</body>
+</html>
